@@ -23,6 +23,7 @@ def getUser(n):
     #url = 'http://www.anyv.net/index.php/category-19-page-' + n + '/'
     #游戏
     #url = 'http://www.anyv.net/index.php/category-261-page-' + n + '/'
+    
     #时尚
     url = 'http://www.anyv.net/index.php/category-22-page-' + n + '/'
     body = requests.get(url, headers=headers).text
