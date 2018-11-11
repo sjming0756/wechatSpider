@@ -40,7 +40,8 @@ if __name__ == "__main__":
 
     user_set = set(user)
     user_list_1 = list(user_set)
-    user_list_1.sort(key=user.index) #去重后按照原来的顺序进行入库
+    #去重后按照原来的顺序进行入库
+    user_list_1.sort(key=user.index) 
     print(len(user_list_1))
 
     for i in range(len(user_list_1)):
