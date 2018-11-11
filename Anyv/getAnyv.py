@@ -37,7 +37,8 @@ if __name__ == "__main__":
     conn = db.cursor()
 
     user = getUser()
-
+    
+    #号主去重
     user_set = set(user)
     user_list_1 = list(user_set)
     #去重后按照原来的顺序进行入库
