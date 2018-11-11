@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 from pymysql import *
 
 '''
-抓取爱妮微网站首页的热门微信号号主信息：http://top.anyv.net/
+抓取爱妮微网站首页的热门微信号号主信息：
+官网地址：http://top.anyv.net/
 '''
 
 def getUser():
