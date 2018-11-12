@@ -11,6 +11,12 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import re
 
+'''
+通过分词或者微信名搜索的方式获取微信公众号的唯一标识：
+每页最多可搜10个公众号，最多可以搜有10页
+
+'''
+
 def sougou_weixin(style):
     ua = UserAgent()
     headers = {
@@ -29,8 +35,6 @@ def sougou_weixin(style):
     for i in range(1,11):
         url = 'https://weixin.sogou.com/weixin?query=' + style + '&_sug_type_=&s_from=input&_sug_=n&type=1&page=' + str(i) + '&ie=utf8'
         body = requests.get(url,headers=headers,verify=False).text
-        print(body)
-
         response = etree.HTML(body)
 
         #主页链接
@@ -41,13 +45,12 @@ def sougou_weixin(style):
             print(link)
             items = get_biz(link)
             save_biz(items)
-            time.sleep(10)
+            time.sleep(0.5)
 
         if len(url_list) < 10:
             return
 
 def save_biz(items):
-
     sql = """insert into sogou_wechat_game(user_name,user_id,biz) values(%s,%s,%s)"""
     try:
         cursor.execute(sql, (
@@ -83,20 +86,16 @@ def get_biz(url):
     print(body)
 
     response = etree.HTML(body)
-
     info = response.xpath('//*[@id="loading"]')
-    print(info)
 
     if len(info) != 0:
         driver = webdriver.PhantomJS()
         driver.get(url)
-        time.sleep(1)
+        time.sleep(0.5)
         driver.refresh()
         driver.implicitly_wait(1)
 
         soup = BeautifulSoup(driver.page_source, 'html.parser')
-        print(soup)
-
         pattern = soup.find_all('img',{'id':'verify_img'})
         link = pattern[0]
         link = str(link)
@@ -105,9 +104,6 @@ def get_biz(url):
 
         response = body[0].strip()
         response = response[5:-2]
-        print(response)
-        print(type(response))
-
         img_url = 'https://mp.weixin.qq.com' + response
         print(img_url)
 
@@ -263,9 +259,9 @@ def get_code(img_url):
 
 def get_value():
     # 用户名
-    username = 'touwen123'
+    username = 'secret'
     # 密码
-    password = 'asdfgh123456'
+    password = 'secret'
     # 软件ＩＤ，开发者分成必要参数。登录开发者后台【我的软件】获得！
     appid = 1
     # 软件密钥，开发者分成必要参数。登录开发者后台【我的软件】获得！
@@ -298,7 +294,7 @@ def get_value():
         return result
 
 if __name__ == "__main__":
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     cursor = db.cursor()
     try:
         sql = """select id,user_name from wechat_game"""
@@ -308,12 +304,12 @@ if __name__ == "__main__":
     except:
         db.rollback()
 
-    for i in range(199,len(data)):
+    for i in range(len(data)):
         id = data[i][0]
         print(id)
         style = data[i][1]
         print(style)
         sougou_weixin(style)
-        time.sleep(5)
+        time.sleep(0.1)
 
     db.close()
