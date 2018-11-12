@@ -8,6 +8,11 @@ from pymysql import *
 from get_img import *
 import random
 
+'''
+获取搜狗微信搜狗微信首页推荐内容，共100条数据，每页20条：https://weixin.sogou.com/
+主要获取微信公众号的唯一标识参数：biz，当然，也会获取微信号号主名称、号主ID
+'''
+
 def sougou_weixin(style):
     ua = UserAgent()
     headers = {
@@ -25,39 +30,32 @@ def sougou_weixin(style):
 
     url = 'https://weixin.sogou.com/pcindex/pc/pc_' + style + '/pc_' + style + '.html'
     body = requests.get(url,headers=headers,verify=False).text
-    print(body)
     response = etree.HTML(body)
     # 最近文章链接
     url_list = response.xpath('//*[@id="pc_6_0"]/li/div[1]/a/@href')
-    print(url_list)
 
     for url in url_list:
         link = url
         print(link)
-        items = get_biz(link)
-        save_biz(items)
-        time.sleep(5)
+        items = get_biz(link) #进入文章主页
+        save_biz(items) #保存文章内容入MySQL
+        time.sleep(0.2)
 
     for i in range(1,5):
         url = 'https://weixin.sogou.com/pcindex/pc/pc_' + style + '/' + str(i) + '.html'
         body = requests.get(url,headers=headers,verify=False).text
-        print(body)
-
         response = etree.HTML(body)
 
         #最近文章链接
         url_list = response.xpath('//*[@id="pc_6_0"]/li/div[1]/a/@href')
-        print(url_list)
         for url in url_list:
             link = url
             print(link)
             items = get_biz(link)
             save_biz(items)
-            time.sleep(5)
-
+            time.sleep(0.2)
 
 def save_biz(items):
-
     sql = """insert into sogou_wechat_game(user_name,user_id,biz) values(%s,%s,%s)"""
     try:
         cursor.execute(sql, (
@@ -84,8 +82,6 @@ def get_biz(url):
     }
     link_url = url
     body = requests.get(link_url, headers=headers, verify=False).text
-    print(body)
-
     response = etree.HTML(body)
 
     info = response.xpath('//*[@id="loading"]')
@@ -101,22 +97,17 @@ def get_biz(url):
         name = name_list[0].strip()
         print(name)
     except:
-        return
+        name = 'None'
 
     #微信号id
-
     id = 'None'
 
     #微信唯一标识biz
     script_list = response.xpath('//*[@id="activity-detail"]/script[1]/text()')
-    print(script_list)
     n = len(script_list)
     biz = script_list[n-1]
-    print(biz)
     #biz_list = response.xpath('/html/body/script[8]/text()')
     #for biz in biz_list:
-    biz = biz
-    print(biz)
     print(biz.strip())
     biz = biz[20:36]
     print(biz)
@@ -134,7 +125,6 @@ if __name__ == "__main__":
     cursor = db.cursor()
 
     '''
-    ....
     5：科技
     6：财经
     7：汽车
@@ -144,7 +134,6 @@ if __name__ == "__main__":
     17：体育
     18：军事
     19：游戏
-    ....
     等等
     '''
     style = '19'
