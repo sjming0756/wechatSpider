@@ -7,6 +7,10 @@ import json
 import time
 import requests
 
+'''
+调取云打码平台对搜狗微信验证码进行识别
+'''
+
 class YDMHttp:
 
     apiurl = 'http://api.yundama.com/api.php'
