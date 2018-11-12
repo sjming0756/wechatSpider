@@ -8,6 +8,10 @@ from pymysql import *
 from get_img import *
 import random
 
+'''
+通过搜狗微信获取微信公众号唯一标识biz,当出现验证码时，需要手动输入
+'''
+
 def sougou_weixin(style):
     ua = UserAgent()
     headers = {
@@ -45,7 +49,6 @@ def sougou_weixin(style):
             return
 
 def save_biz(items):
-
     sql = """insert into sogou_wechat_game(user_name,user_id,biz) values(%s,%s,%s)"""
     try:
         cursor.execute(sql, (
@@ -90,10 +93,9 @@ def get_biz(url):
         name = name_list[0].strip()
         print(name)
     except:
-        return
+        name = 'None'
 
     #微信号id
-
     id = 'None'
 
     #微信唯一标识biz
@@ -101,11 +103,8 @@ def get_biz(url):
     print(script_list)
     n = len(script_list)
     biz = script_list[n-1]
-    print(biz)
     #biz_list = response.xpath('/html/body/script[8]/text()')
     #for biz in biz_list:
-    biz = biz
-    print(biz)
     print(biz.strip())
     biz = biz[20:36]
     print(biz)
@@ -119,7 +118,7 @@ def get_biz(url):
     return items
 
 if __name__ == "__main__":
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     cursor = db.cursor()
     try:
         sql = """select id,user_name from wechat_game"""
@@ -129,12 +128,12 @@ if __name__ == "__main__":
     except:
         db.rollback()
 
-    for i in range(344,len(data)):
+    for i in range(len(data)):
         id = data[i][0]
         print(id)
         style = data[i][1]
         print(style)
         sougou_weixin(style)
-        time.sleep(5)
+        time.sleep(0.5)
 
     db.close()
