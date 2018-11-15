@@ -47,7 +47,7 @@ def rearch_5ce(keyword):
             }
 
     url = 'http://www.5ce.com/api/sucai/search'
-    body = requests.post(url, data=json.dumps(payload), headers=headers).text
+    body = requests.post(url, data=json.dumps(payload), headers=headers).text #post请求 
     
 def get_5ce(i,keyword):
     headers = {
@@ -83,7 +83,7 @@ def get_5ce(i,keyword):
 
 
     url = 'http://www.5ce.com/api/sucai/filter?dataType=dataList'
-    body = requests.post(url,data=json.dumps(payload),headers=headers).text
+    body = requests.post(url,data=json.dumps(payload),headers=headers).text #post请求
 
     response = json.loads(body)
     print(response)
