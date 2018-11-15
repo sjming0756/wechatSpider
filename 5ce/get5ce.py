@@ -24,8 +24,8 @@ def get_5ce(i):
         'Accept-Language': 'zh-CN,zh;q=0.9',
         'Cookie': '.5ce.session=614024d4-875d-4847-9c84-2e06e3b44c31; Hm_lvt_2d56acf42b4056540e59888ab8e03687=1535528811; Hm_lvt_a38000c86c99ba91fdd1ebad27fc0902=1535528811; .AspNetCore.Cookies=CfDJ8A8trPnvhYhOgjBnKrfrdaBTsA4XsbbN8XijzXSFS2fP5_V0iKsaDvM63udwxentFsDVPuBoCiHiwfBxK5_JO3MOdrZEC9J6KQQILlWYRlwutXxbgDVPkkiuPC697SZ1vywkRN5QLRIemGa3YjA4M8-P2Fb3TfCaFSWBoBTzB3kjSMGRYoKyxrhNqdQboQsyu0oYOTYpF3KBjPqZiNzKENaX8L6rRCTI48oiQsvk6_OxcQcbCvEadJkh8waWN-7tkJuUiweQxYNNBB6u0VVlBBU33El0ALiFPOxgrFuar8Uf7KWjs2Ggmfe6nP-CTx1N5lJxK42fU75PkV8Ts0l2N3X0_ax_SBKW7f7Hx_jw_JpY1InJcKOFaqh_UxPXnux1i8FHM7xpAbiv-hVBDFa2Ai-lOf3PZqS9C7IPqcd15ci3XraKi-jNDcclVf2OQ2eJaZTdLRUBgpfUVf020EWAOs9yHu8lH0uM_edMTYTKUXHf2eW_DDjsBAxACJPnUNgbAnv37n_18CKpljKKrB69qnyRa1U647hm3dKaKEBqrKPalArJbrMSo-en3vS0Fv9KdraNem54CI6XF-2oRZhZb1eJd1dp7fmzwvScU4hEpiIaiFCgqLwg-840fxkx_HC3aktBtaX6aYSh3O1pWa87JEI; .AspNetCore.Antiforgery.ixigDfNCJGc=CfDJ8A8trPnvhYhOgjBnKrfrdaDfpwNrli7V21WAoIlP5o2vUSzzbzqejUPkQsYe_CCkJT61CC6mSKSh7thdNYQ9FHt4I5VRACXPAiu8kECUlJgVWTTFtTj7iryKJ9oDisQmQPRI6n4rSfn7Q_b74O4IcHk; Hm_lpvt_2d56acf42b4056540e59888ab8e03687=1536216327; Hm_lpvt_a38000c86c99ba91fdd1ebad27fc0902=1536216327'
     }
+    
     url = 'http://www.5ce.com/hots/data?name=weixin&rank=wxrw&rankGuid=a1db899f-4e32-e811-b201-d4ae52d0f72c&sort=sortindex&sortType=DESC&catalogId=all&pageIndex=' + str(i)
-    print(url)
     body = requests.get(url,headers=headers,verify=False).text
     print(body)
     response = etree.HTML(body)
@@ -59,8 +59,8 @@ def get_biz(url):
 
     body = requests.get(url, headers=headers, verify=False).text
     response = BeautifulSoup(body,'lxml')
-    time.sleep(1)
-    print(response)
+    time.sleep(0.1)
+    #print(response)
 
     url = response.find_all('span',{'class':'soucre'})
     data = url[0]
