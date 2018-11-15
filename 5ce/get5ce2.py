@@ -90,14 +90,13 @@ def get_5ce(i,keyword):
 
     #匹配文章链接
     data_list = response['data']
-    print(data_list)
     for i in range(len(data_list)):
         data = data_list[i]
         link = data['url']
         print(link)
         items = get_biz(link)
         save_biz(items)
-        time.sleep(3)
+        time.sleep(0.3)
 
 def get_biz(url):
     headers = {
@@ -112,7 +111,7 @@ def get_biz(url):
 
     body = requests.get(url, headers=headers, verify=False).text
     response = etree.HTML(body)
-    time.sleep(2)
+    time.sleep(0.2)
     print(response)
 
     #url = response.find_all('span',{'class':'soucre'})
