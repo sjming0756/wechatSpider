@@ -37,7 +37,7 @@ def get_5ce(i):
     for url in url_list:
         url = url[6:-1]
         link = 'http://www.5ce.com' + url
-        print(link)
+        #print(link)
         items = get_biz(link)
         save_biz(items)
         time.sleep(0.5)
