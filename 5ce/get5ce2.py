@@ -159,13 +159,13 @@ def save_biz(items):
         db.rollback()
 
 if __name__ == "__main__":
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     cursor = db.cursor()
 
     keyword = "延禧攻略"
     rearch_5ce(keyword)
     for i in range(1,26):
         get_5ce(i,keyword)
-        time.sleep(5)
+        time.sleep(0.5)
 
     db.close()
