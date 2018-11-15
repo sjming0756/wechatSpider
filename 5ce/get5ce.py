@@ -7,6 +7,11 @@ from pymysql import *
 import time
 from bs4 import BeautifulSoup
 
+'''
+微信公众号号主抓取，抓取网站http://www.5ce.com
+此网站需要登录，并且只能抓取10页，公众号号主不是很全，一般只能抓最新发布文章的号主
+'''
+
 def get_5ce(i):
     headers = {
         'Host':'www.5ce.com',
