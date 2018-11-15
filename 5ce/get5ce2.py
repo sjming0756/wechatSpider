@@ -149,8 +149,6 @@ def get_biz(url):
 
     return items
 
-def get_biz2(url):
-    pass
 def save_biz(items):
     sql = """insert into 5ce_wechat(user_name,user_id,biz) values(%s,%s,%s)"""
     try:
