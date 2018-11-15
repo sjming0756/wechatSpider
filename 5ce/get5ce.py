@@ -27,22 +27,20 @@ def get_5ce(i):
     
     url = 'http://www.5ce.com/hots/data?name=weixin&rank=wxrw&rankGuid=a1db899f-4e32-e811-b201-d4ae52d0f72c&sort=sortindex&sortType=DESC&catalogId=all&pageIndex=' + str(i)
     body = requests.get(url,headers=headers,verify=False).text
-    print(body)
     response = etree.HTML(body)
-    print(response)
 
     #匹配文章链接
     #url_list = response.xpath('//*[@id="app"]/div[2]/section/div[1]/div[2]/div[3]/div[2]/div/div[1]/dl//a/@href')
     pattern = re.compile('href="/[^\s]*')
     url_list = re.findall(pattern,body)
-    print(url_list)
+    #print(url_list)
     for url in url_list:
         url = url[6:-1]
         link = 'http://www.5ce.com' + url
         print(link)
         items = get_biz(link)
         save_biz(items)
-        time.sleep(5)
+        time.sleep(0.5)
 
 def get_biz(url):
     headers = {
