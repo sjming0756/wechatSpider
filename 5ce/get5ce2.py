@@ -8,6 +8,11 @@ import time
 from bs4 import BeautifulSoup
 import json
 
+'''
+微信公众号号主抓取，主要抓取公众号唯一标识biz,网站：http://www.5ce.com
+主要通过搜索分词的方式，对公众号进行搜索，此网站需要登录
+'''
+
 def rearch_5ce(keyword):
     headers = {
         'Host': 'www.5ce.com',
@@ -43,7 +48,7 @@ def rearch_5ce(keyword):
 
     url = 'http://www.5ce.com/api/sucai/search'
     body = requests.post(url, data=json.dumps(payload), headers=headers).text
-    print(body)
+    
 def get_5ce(i,keyword):
     headers = {
         'Host': 'www.5ce.com',
@@ -78,8 +83,6 @@ def get_5ce(i,keyword):
 
 
     url = 'http://www.5ce.com/api/sucai/filter?dataType=dataList'
-
-
     body = requests.post(url,data=json.dumps(payload),headers=headers).text
 
     response = json.loads(body)
