@@ -168,7 +168,7 @@ def get_gsdata2(style,i):
     return n
 
 if __name__ == "__main__":
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     cursor = db.cursor()
 
     try:
@@ -179,9 +179,8 @@ if __name__ == "__main__":
     except:
         db.rollback()
 
-    for i in range(3140,len(data)):
+    for i in range(len(data)):
         id = data[i][0]
-        print(id)
         word = data[i][1]
         style = str(word)
         n = get_gsdata(style)
