@@ -28,7 +28,6 @@ def get_gsdata(gid):
 
     url = 'http://www.gsdata.cn/custom/comrankdetails?gid=' + gid
     body = requests.get(url,headers=headers).text
-    print(body)
     time.sleep(1)
 
     response = BeautifulSoup(body,'lxml')
@@ -80,7 +79,6 @@ def get_biz(wxname,id):
     }
     url = 'http://www.gsdata.cn/rank/wxdetail?wxname=' + wxname
     body = requests.get(url,headers=headers).text
-    #print(body)
     time.sleep(2)
 
     pattern = re.compile('biz=[^\s]*')
@@ -138,7 +136,6 @@ def get_gsdata2(gid,i):
 
     url = 'http://www.gsdata.cn/custom/ajax_comrankdetails?type=day&date=2018-03-05&gid=' +gid + '&keyword=&page=' + str(i)
     body = requests.get(url, headers=headers).text
-    print(body)
     time.sleep(1)
 
     response = json.loads(body)
