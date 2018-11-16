@@ -9,6 +9,11 @@ import time
 from lxml import etree
 import random
 
+'''
+微信公众号号主信息抓取，清博大数据：http://www.gsdata.cn/
+此代码通过直接搜索公众号的方式，来抓取微信公众号号主信息
+'''
+
 def get_gsdata(style):
     headers = {
         'Host': 'www.gsdata.cn',
@@ -24,13 +29,10 @@ def get_gsdata(style):
 
     url = 'http://www.gsdata.cn/query/wx?q=' + style
     body = requests.get(url,headers=headers).text
-    #print(body)
     time.sleep(2)
-
 
     response = BeautifulSoup(body,'lxml')
     data_list = response.find_all('li',{'class','clearfix list_query'})
-    #print(data_list)
     n = len(data_list)
     time.sleep(2)
 
@@ -104,21 +106,17 @@ def get_gsdata2(style,i):
 
     url = 'http://www.gsdata.cn/query/ajax_wx?q=' + style + '&page=' + str(i) + '&types=all&industry=all&proName='
     body = requests.get(url, headers=headers).text
-    #print(body)
     time.sleep(1)
 
     try:
         response = json.loads(body)
-        #print(response)
         soup = response['data']
         time.sleep(1)
     except:
         return
 
-
     response = BeautifulSoup(soup, 'lxml')
     data_list = response.find_all('div', {'class', 'word'})
-    #print(data_list)
     time.sleep(1)
 
     n = len(data_list)
