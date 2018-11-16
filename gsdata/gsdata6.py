@@ -9,6 +9,11 @@ import time
 from lxml import etree
 import random
 
+'''
+微信公众号号主信息抓取，清博大数据：http://www.gsdata.cn/
+此代码通过分词搜索微信公众号文章的方式，从而获取微信公众号号主信息
+'''
+
 def get_gsdata(style):
     headers = {
         'Host': 'www.gsdata.cn',
