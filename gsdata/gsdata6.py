@@ -29,12 +29,10 @@ def get_gsdata(style):
 
     url = 'http://www.gsdata.cn/query/arc?q=' + style
     body = requests.get(url,headers=headers).text
-    print(body)
     time.sleep(2)
 
     response = BeautifulSoup(body,'lxml')
     data_list = response.find_all('div',{'class','word'})
-    print(data_list)
     n = len(data_list)
     time.sleep(2)
 
@@ -110,19 +108,16 @@ def get_gsdata2(style,i):
 
     url = 'http://www.gsdata.cn/query/ajax_arc?q='+ style + '&page=' + str(i) + '&types=all&industry=all&post_time=3&sort=&proName='
     body = requests.get(url, headers=headers).text
-    print(body)
     time.sleep(1)
 
 
     response = json.loads(body)
-    print(response)
     soup = response['data']
     time.sleep(1)
 
 
     response = BeautifulSoup(soup, 'lxml')
     data_list = response.find_all('div', {'class', 'imgword'})
-    print(data_list)
     time.sleep(1)
 
     n = len(data_list)
@@ -172,7 +167,7 @@ def get_gsdata2(style,i):
     return n
 
 if __name__ == "__main__":
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     cursor = db.cursor()
 
     try:
