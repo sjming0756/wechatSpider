@@ -8,6 +8,11 @@ import json
 import time
 from lxml import etree
 
+'''
+爬取清博大数据微信公众号号主信息biz：http://www.gsdata.cn/
+爬取的是各分类榜单，即科技、娱乐、时尚、游戏、财经等
+'''
+
 def get_gsdata(gid):
     headers = {
         'Host': 'www.gsdata.cn',
@@ -180,7 +185,7 @@ def get_gsdata2(gid,i):
                 break
 
 if __name__ == "__main__":
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     cursor = db.cursor()
     gid_list = ['9202','10409','10413','11559','13553','13810','14254','15234','15617','15620']
     for i in gid_list:
