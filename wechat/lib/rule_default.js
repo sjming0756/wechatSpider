@@ -76,7 +76,6 @@ setTimeout(function(){
     });
 },1000);
 
-
 module.exports = {
     token: Date.now(),
     summary:function(){
@@ -103,7 +102,6 @@ module.exports = {
 
         return false;
 
-
         //intercept all options request
         // var simpleUrl = (req.headers.host || "") + (req.url || "");
         // mapConfig.map(function(item){
@@ -113,7 +111,6 @@ module.exports = {
         //         return false;
         //     }
         // });
-
 
         // return !!req.anyproxy_map_local;
       
