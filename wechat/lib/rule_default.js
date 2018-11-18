@@ -112,8 +112,7 @@ module.exports = {
         //     }
         // });
 
-        // return !!req.anyproxy_map_local;
-      
+        // return !!req.anyproxy_map_local;    
     },
 
     dealLocalResponse : function(req,reqBody,callback){
