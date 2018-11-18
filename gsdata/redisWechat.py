@@ -7,10 +7,12 @@ import redis
 微信公众号号主提取：从Redis到MySQL
 '''
 
+#从redis中获取去重后的微信公众号
 def redis_set(name,biz):
     pipe.set(biz,name)
     pipe.execute()
 
+#保存进MySQL
 def get_key(v,k):
     params = [v, k]
     sql = """insert into wechat(userName,biz) VALUE(%s,%s)"""
@@ -27,7 +29,8 @@ if __name__ == "__main__":
 
     db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     conn = db.cursor()
-
+    
+    #管道缓存
     pipe = r.pipeline()
     pipe_size = 100000
 
