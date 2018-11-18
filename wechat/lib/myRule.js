@@ -19,7 +19,6 @@ var mpAccount = {};
 var isScrollDown = {}
 var msgLinks = [];
 var profiles = [];
-
 // var targetBiz = 'MjM5MzcxMjQzOQ==';
 
 // 文章页抓取时间规则
