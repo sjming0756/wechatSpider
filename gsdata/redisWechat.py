@@ -3,8 +3,11 @@
 from pymysql import *
 import redis
 
-def redis_set(name,biz):
+'''
+微信公众号号主提取：从Redis到MySQL
+'''
 
+def redis_set(name,biz):
     pipe.set(biz,name)
     pipe.execute()
 
@@ -22,29 +25,8 @@ if __name__ == "__main__":
     r = redis.StrictRedis(connection_pool=pool)
     pipe = r.pipeline(transaction=False)
 
-    db = connect(host="localhost", port=3306, db="spider", user="root", password="123456", charset="utf8")
+    db = connect(host="localhost", port=3306, db="spider", user="root", password="secret", charset="utf8")
     conn = db.cursor()
-    '''
-    try:
-        sql = 'SELECT user_name,biz FROM gsdata_wechat'
-        conn.execute(sql)
-        data = conn.fetchall()
-        db.commit()
-    except:
-        db.rollback()
-
-    for i in range(len(data)):
-        print(i)
-        user_name = data[i][0]
-        biz = data[i][1]
-        redis_set(user_name,biz)
-    '''
-    '''
-    keys = r.keys()
-    print(type(keys))
-    for key in keys:
-        print(key)
-    '''
 
     pipe = r.pipeline()
     pipe_size = 100000
