@@ -72,7 +72,6 @@ function getAllProfiles(cb){
 
 // 获取阅读量、点赞量、安卓手机赞赏量
 function getReadAndLikeNum(req, res, serverResData, callback){
-
 	try {
 		var now = Date.now();
 		var link = req.url;
