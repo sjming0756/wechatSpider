@@ -3,7 +3,6 @@ var url = require('url');
 var querystring = require('querystring');
 var fs = require('fs');
 
-
 // 创建数据库连接，需根据自己数据库账号密码修改
 var connection = mysql.createConnection({
 	host: '数据库IP',
@@ -22,7 +21,6 @@ var msgLinks = [];
 var profiles = [];
 
 // var targetBiz = 'MjM5MzcxMjQzOQ==';
-
 
 // 文章页抓取时间规则
 var biggerTime = new Date(2014, 1, 5).getTime();
@@ -62,7 +60,6 @@ function getAllLinks(cb){
 	});
 }
 
-
 // 程序一开始从数据库中取出所有待抓取的公众号保存在数组中
 function getAllProfiles(cb){
 	connection.query('select biz from history where moditime is null or moditime < ? order by moditime', [Date.now() - 3 * 24 * 60 * 60 * 1000], function(err, results){
@@ -73,7 +70,6 @@ function getAllProfiles(cb){
 		cb();
 	});
 }
-
 
 // 获取阅读量、点赞量、安卓手机赞赏量
 function getReadAndLikeNum(req, res, serverResData, callback){
@@ -121,7 +117,6 @@ function getReadAndLikeNum(req, res, serverResData, callback){
 	}
 	callback(serverResData);
 }
-
 
 // 从历史详情页获得文章链接等数据
 function getProfile(req,res,serverResData,callback){
@@ -246,7 +241,6 @@ function getProfile(req,res,serverResData,callback){
 	// connection.end();
 }
 
-
 // 解析数据，之后调用保存在数据库中的函数
 function parseArticles(o, dateTime){
 	var contentUrl = o.content_url;
@@ -281,7 +275,6 @@ function parseArticles(o, dateTime){
 	}
 }
 
-
 // 插入数据库时判断此数据是否已经存在
 function whetherInsertData(iD){
 	// 历史页抓取时间规则
@@ -311,7 +304,6 @@ function whetherInsertData(iD){
 		}
 	});
 }
-
 
 // 文章页，注入js脚本使自动翻页
 function insertJsForRefresh(req, res, serverResData, callback){
@@ -402,13 +394,11 @@ function insertJsForRefresh(req, res, serverResData, callback){
 	}
 }
 
-
 // 转义符换成普通字符
 function escape2Html(str){
 	var arrEntities={'lt':'<','gt':'>','nbsp':' ','amp':'&','quot':'"'};
 	return str.replace(/&(lt|gt|nbsp|amp|quot);/ig,function(all,t){return arrEntities[t];});
 }
-
 
 exports.insertJsForRefresh = insertJsForRefresh;
 exports.getProfile = getProfile;
