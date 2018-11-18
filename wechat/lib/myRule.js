@@ -6,9 +6,9 @@ var fs = require('fs');
 
 // 创建数据库连接，需根据自己数据库账号密码修改
 var connection = mysql.createConnection({
-	host: '192.168.1.100',
+	host: '数据库IP',
 	user: 'root',
-	password: 'zy79117911#',
+	password: 'secret',
 	database: 'Spider'
 });
 
