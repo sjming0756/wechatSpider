@@ -117,7 +117,6 @@ module.exports = {
     },
 
     dealLocalResponse : function(req,reqBody,callback){
-
         // 判断请求，如果请求为图片，则用本地图片替代，加快加载速度
         // if (/image/.test(req.headers.accept)) {
         //     callback(200, {'content-type': 'image/png'}, localPng);
@@ -135,7 +134,6 @@ module.exports = {
                 callback(200, {"content-type":"text/plain"}, "false");
             }
         }
-
 
         // if(req.anyproxy_map_local){
         //     fs.readFile(req.anyproxy_map_local,function(err,buffer){
