@@ -34,7 +34,7 @@ def get_gsdata(style):
     response = BeautifulSoup(body,'lxml')
     data_list = response.find_all('li',{'class','clearfix list_query'})
     n = len(data_list)
-    time.sleep(2)
+    time.sleep(0.2)
 
     if n == 0:
         return 0
