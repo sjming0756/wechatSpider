@@ -5,7 +5,7 @@ import re
 from pymysql import *
 
 '''
-分词获取，搜索微信公众号所用，网站：https://gist.github.com/indiejoseph/eae09c673460aa0b56db
+分词获取，搜索微信公众号所用分词，网站：https://gist.github.com/indiejoseph/eae09c673460aa0b56db
 '''
 
 def get_word():
