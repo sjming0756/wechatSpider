@@ -6,6 +6,10 @@ import urllib3
 import time
 from bs4 import BeautifulSoup
 
+'''
+微信公众号文章内容抓取，抓取的是公众号中文章的文字内容
+'''
+
 def loadLink(url):
     headers = {
         'Host': 'mp.weixin.qq.com',
