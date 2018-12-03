@@ -34,13 +34,9 @@ def loadLink(url):
     #print(soup)
 
     pattern = BeautifulSoup(str(soup),'lxml')
-    #soup2 = pattern.find_all('p')
     soup2 = pattern.get_text()
     soup2 = str(soup2)
     soup2 = soup2.strip()
-    #soup2 = soup2[0]
-    #soup2 = str(soup2)
-    #soup2 = soup2.strip()
     print(soup2)
 
     return soup2
