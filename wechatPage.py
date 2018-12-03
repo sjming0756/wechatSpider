@@ -66,6 +66,5 @@ if __name__ == "__main__":
             db.commit()
         except:
             db.rollback()
-            time.sleep(1)
 
     db.close()
