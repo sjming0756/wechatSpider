@@ -35,7 +35,6 @@ def loadLink(url):
     soup2 = pattern.get_text()
     soup2 = str(soup2)
     soup2 = soup2.strip()
-    print(soup2)
 
     return soup2
 
