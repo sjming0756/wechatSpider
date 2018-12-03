@@ -56,7 +56,6 @@ if __name__ == "__main__":
         content = data[i][2]
 
         page = loadLink(msg_link)
-        #time.sleep(1000)
 
         n = id
         n = str(n)
