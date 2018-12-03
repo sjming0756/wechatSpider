@@ -53,7 +53,6 @@ if __name__ == "__main__":
     for i in range(len(data)):
         id = data[i][0]
         msg_link = data[i][1]
-        print(msg_link)
         content = data[i][2]
 
         page = loadLink(msg_link)
