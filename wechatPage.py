@@ -33,7 +33,6 @@ def loadLink(url):
     soup = soup[0]
     #print(soup)
 
-
     pattern = BeautifulSoup(str(soup),'lxml')
     #soup2 = pattern.find_all('p')
     soup2 = pattern.get_text()
@@ -45,7 +44,6 @@ def loadLink(url):
     print(soup2)
 
     return soup2
-
 
 if __name__ == "__main__":
     db = connect(host="localhost", port=3306, db="Spider", user="root", password="secret", charset="utf8")
@@ -69,7 +67,6 @@ if __name__ == "__main__":
         page = loadLink(msg_link)
         #time.sleep(1000)
 
-
         n = id
         n = str(n)
         params = [page, n]
@@ -80,6 +77,5 @@ if __name__ == "__main__":
         except:
             db.rollback()
             time.sleep(1)
-
 
     db.close()
