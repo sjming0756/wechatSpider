@@ -25,13 +25,11 @@ def loadLink(url):
 
     body = requests.get(url, headers=headers, timeout=5).text
     urllib3.disable_warnings()
-    time.sleep(0.2)
-    #print(body)
-
+    time.sleep(0.1)
+   
     response = BeautifulSoup(body,'lxml')
     soup = response.find_all('div',{'id':'js_content'})
     soup = soup[0]
-    #print(soup)
 
     pattern = BeautifulSoup(str(soup),'lxml')
     soup2 = pattern.get_text()
