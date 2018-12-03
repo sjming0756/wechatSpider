@@ -50,7 +50,7 @@ if __name__ == "__main__":
     except:
         db.rollback()
 
-    for i in range(2131,len(data)):
+    for i in range(len(data)):
         id = data[i][0]
         print(id)
         msg_link = data[i][1]
